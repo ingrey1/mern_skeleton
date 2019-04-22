@@ -75,4 +75,4 @@ UserSchema.path('hashed_password').validate(function(v) {
   }
 }, null);
 
-export default mongoose.model('User', User - Schema);
+export default mongoose.model('User', UserSchema);
