@@ -3,6 +3,7 @@ import _ from 'lodash';
 import errorHandler from '../helpers/dbErrorHandler';
 
 const create = (req, res, next) => {
+  console.log('create called');
   const user = new User(req.body);
   user.save((err, result) => {
     if (err) {
@@ -46,7 +47,6 @@ const userByID = (req, res, next, id) => {
 const read = (req, res) => {
   // remove sensitive info before sending to client
   req.profile.hashed_password = undefined;
-  req.profile.salt = undefined;
   return res.json(req.profile);
 };
 
@@ -65,7 +65,6 @@ const update = (req, res, next) => {
   });
   // remove sensitive info
   user.hashed_password = undefined;
-  user.salt = undefined;
   res.json(user);
 };
 
@@ -80,7 +79,6 @@ const remove = (req, res, next) => {
   });
   // remove sensitive info
   deletedUser.hashed_password = undefined;
-  deletedUser.salt = undefined;
   res.json(deletedUser);
 };
 
